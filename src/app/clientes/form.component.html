@@ -1,0 +1,167 @@
+<div class="card bg-light m-5 shadow">
+   
+    <div class="card-body p-5 m-2">
+
+        <h2 class="text-center"> {{titulo}}</h2>
+        <br>
+        <form #clienteForm="ngForm">
+
+            <div class="container">
+
+                <div class="row">
+                <div class="col">
+                  
+                    <div class="form  ">
+                        <label for="floatingNombre">Nombre</label>
+                        <input type="text" class="form-control border-bottom outline"  [(ngModel)] = "cliente.nombre" name="nombre" id="floatingNombre" required minlength="4" #nombre="ngModel">
+              
+                        <div class="alert alert-danger" *ngIf=" nombre.invalid && (nombre.dirty || nombre.touched)" >
+                            <div *ngIf="nombre.errors?.['required']">
+                                El nombre es necesario
+                            </div>
+                            <div *ngIf="nombre.errors?.['minlength']">
+                                El nombre debe tener al menos 4 caracteres
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col">
+                   <div class="form">
+                <label for="apellido" >Apellido</label>
+                <div >
+                    <input type="text" class="form-control" [(ngModel)] = "cliente.apellido" name="apellido" required #apellido="ngModel">
+                    <div class="alert alert-danger" *ngIf=" apellido.invalid && (apellido.dirty || apellido.touched)" >
+                        <div *ngIf="apellido.errors?.['required']">
+                            El apellido es necesario
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+                </div>
+            </div>
+           
+            <br>
+
+
+            <div class="container">
+
+                <div class="row">
+                <div class="col">
+                    <div class="form">
+                        <label for="email" class="col-form-label col-sm-2">Email</label>
+                        <div>
+                            <input type="text" class="form-control" [(ngModel)] = "cliente.email" name="email" required email #email="ngModel">
+                            <div class="alert alert-danger" *ngIf=" email.invalid && (email.dirty || email.touched)" >
+                                <div *ngIf="email.errors?.['required']">
+                                    El email es necesario
+                                </div>
+                                <div *ngIf="email.errors?.['email']">
+                                    El email debe tener un formato válido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form">
+                        <label for="direccion" class="col-form-label col-sm-2">Direccion</label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "cliente.direccion" name="direccion" required #direccion="ngModel">
+                            <div class="alert alert-danger" *ngIf=" direccion.invalid && (direccion.dirty || direccion.touched)" >
+                                <div *ngIf="direccion.errors?.['required']">
+                                    La direccion es necesario
+                                </div>
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            
+            <br>
+      
+            
+            <div class="container">
+
+                <div class="row">
+                <div class="col">
+                    <div class="form">
+                        <label for="telefono" class="col-form-label col-sm-2">Telefono</label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "cliente.telefono" name="telefono" required minlength="10"  #telefono="ngModel">
+                            <div class="alert alert-danger" *ngIf=" telefono.invalid && (telefono.dirty || telefono.touched)" >
+                                <div *ngIf="telefono.errors?.['required']">
+                                    El Telefono es necesario
+                                </div>
+                                <div *ngIf="telefono.errors?.['minlength']">
+                                    El telefono debe tener al menos 10 digitos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form">
+                        <label for="rfc" class="col-form-label col-sm-2">RFC</label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "cliente.rfc" name="rfc" required required minlength="12" #rfc="ngModel">
+                            <div class="alert alert-danger" *ngIf=" rfc.invalid && (rfc.dirty || rfc.touched)" >
+                                <div *ngIf="rfc.errors?.['required']">
+                                    El RFC es necesario
+                                </div>
+                                <div *ngIf="rfc.errors?.['minlength']">
+                                    El RFC debe tener 12 digitos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+            
+       
+            <br>
+            <div class="container">
+                <div class="row" >
+
+
+                    <div class="col-12">
+
+                        
+                        <label for="formFile" class="form-label">Selecciona una foto</label>
+                        <input (change)="uploadPhoto($event)" class="form-control" type="file" id="formFile">
+                      </div>
+                </div>
+            </div>
+<br>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-11" >
+
+                    </div>
+
+                    <div class="col-1" >
+                        <div class="form">
+                            <div class="">
+                                <button class="btn btn-primary" role="button" (click)= 'create()' *ngIf="!cliente.id else elseBlock" [disabled]="!clienteForm.form.valid"  >Crear</button>
+                                <ng-template #elseBlock>
+                                    <button class="btn btn-primary" role="button" (click)= 'update()' [disabled]="!clienteForm.form.valid">Editar</button>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </form>
+    </div>
+</div>

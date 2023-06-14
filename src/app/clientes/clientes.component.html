@@ -1,0 +1,60 @@
+<div class="card m-5 shadow-lg " >
+    <div class="card-body ">
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h3 class="card-title ms-3">Listado de Clientes</h3>
+        </div>
+        <div class="col-2">
+            <div class="ms-5 text-left">
+                <button class="btn btn-rounded btn-dark text-white" type="button" [routerLink]="['/clientes/form']">
+                    Crear Cliente
+                </button>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div   *ngIf="clientes?.length == 0" class="alert alert-info">
+    No hay ningún Cliente Registrado
+</div>
+
+
+<div class="card m-4 shadow btn text-start "    *ngFor="let cliente of clientes">
+    <div class="row g-0" >
+     
+      <div class="col-md-2 " *ngIf="cliente?.foto else elseblock">
+        <img *ngIf="cliente?.foto" src="http://localhost:8080/api/uploads/img/{{cliente.foto}} " width="200px" class="mt-3">
+      </div>
+      <ng-template #elseblock>
+
+      <div class="col-md-2 text-bg-secondary">
+        <h4 class="text-center my-5">{{cliente.nombre}} </h4>
+       </div>
+      </ng-template>
+
+     
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{cliente.nombre}}   {{cliente.apellido}}</h5>
+          <p class="card-text">  {{cliente.email}}</p>
+          <p class="card-text">  {{cliente.telefono}}</p>
+          <p class="card-text"><small class="text-body-secondary">  {{cliente.createAt}}</small></p>
+        </div>
+
+        
+      </div>
+
+      <div class="col-md-2 align-self-end mb-2">
+        <button type="button" class="btn btn-primary me-2 " name="button" [routerLink]="['/clientes/form',cliente.id]">Editar</button>
+        <button type="button" class="btn btn-danger" name="button" (click)='delete(cliente)'>Eliminar</button>
+
+    </div>
+    </div>
+  </div>
+
+
+
+  
+      </div>
+  </div>

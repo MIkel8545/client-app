@@ -1,0 +1,197 @@
+<div class="card bg-light m-5 shadow">
+   
+    <div class="card-body p-5 m-2">
+
+        <h2 class="text-center"> {{titulo}}</h2>
+        <br>
+
+
+       
+
+        <form #clienteForm="ngForm">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col">
+
+                        <div class="form">
+                            <select class="form-select " [(ngModel)] = "servicio.cliente">
+                          
+                                <option [value]="cliente"  *ngFor="let cliente of clientes">
+                                    {{cliente.nombre}}
+                                </option>
+                    
+                            </select>
+
+                        </div>
+                       
+                    </div>
+                    <div class="col">
+                        <select class="form-select " [(ngModel)] = "servicio.mecanico">
+                            <option selected> Selecciona un mecanico</option>
+                            <option value="empleado.nombre" *ngFor="let empleado of empleados">
+                                {{empleado.nombre}}
+                            </option>
+                
+                        </select>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                <div class="col">
+                  
+                    <div class="form  ">
+                        <label for="floatingNombre">Modelo</label>
+                        <input type="text" class="form-control border-bottom outline"  [(ngModel)] = "servicio.modelo" name="modelo" id="floatingModelo" required  #modelo="ngModel">
+              
+                        <div class="alert alert-danger" *ngIf=" modelo.invalid && (modelo.dirty || modelo.touched)" >
+                            <div *ngIf="modelo.errors?.['required']">
+                               El modelo es necesario
+                            </div>
+                          
+                        </div>
+                      </div>
+                </div>
+                <div class="col">
+                   <div class="form">
+                <label for="marca" >Marca</label>
+                <div >
+                    <input type="text" class="form-control" [(ngModel)] = "servicio.marca" name="marca" required #marca="ngModel">
+                    <div class="alert alert-danger" *ngIf=" marca.invalid && (marca.dirty || marca.touched)" >
+                        <div *ngIf="marca.errors?.['required']">
+                            La marca es necesario
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+                </div>
+            </div>
+           
+            <br>
+
+
+            <div class="container">
+
+                <div class="row">
+                <div class="col">
+                    <div class="form">
+                        <label for="tipo" class="col-form-label col-sm-2">Vehiculo Tipo</label>
+                        <div>
+                            <input type="text" class="form-control" [(ngModel)] = "servicio.tipo" name="tipo" required #tipo="ngModel">
+                            <div class="alert alert-danger" *ngIf=" tipo.invalid && (tipo.dirty || tipo.touched)" >
+                                <div *ngIf="tipo.errors?.['required']">
+                                    El tipo es necesario
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form">
+                        <label for="color" class="col-form-label col-sm-2">Color del Vehiculo</label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "servicio.color" name="tipo" required #color="ngModel">
+                            <div class="alert alert-danger" *ngIf=" color.invalid && (color.dirty || color.touched)" >
+                                <div *ngIf="color.errors?.['required']">
+                                    El color es necesario
+                                </div>
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            
+            <br>
+      
+            
+            <div class="container">
+
+                <div class="row">
+                <div class="col">
+                    <div class="form">
+                        <label for="placas" class="col-form-label col-sm-2">Placas</label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "servicio.placas" name="placas" required minlength="6"  #placas="ngModel">
+                            <div class="alert alert-danger" *ngIf=" placas.invalid && (placas.dirty || placas.touched)" >
+                                <div *ngIf="placas.errors?.['required']">
+                                    Las placas del vehiculo son necesarias
+                                </div>
+                                <div *ngIf="placas.errors?.['minlength']">
+                                   Las placas deben tener al menos 6 caracteres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form">
+                        <label for="numero" class="col-form-label col-sm-2">VIM</label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "servicio.serie" name="serie" required required minlength="17" #serie="ngModel">
+                            <div class="alert alert-danger" *ngIf=" serie.invalid && (serie.dirty || serie.touched)" >
+                                <div *ngIf="serie.errors?.['required']">
+                                    El número de serie es necesario
+                                </div>
+                                <div *ngIf="serie.errors?.['minlength']">
+                                    El numero de serie debe tener 12 digitos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form">
+                        <label for="km" class="col-form-label col-sm-2">Km </label>
+                        <div >
+                            <input type="text" class="form-control" [(ngModel)] = "servicio.km" name="km" required  #km="ngModel">
+                            <div class="alert alert-danger" *ngIf=" km.invalid && (km.dirty || km.touched)" >
+                                <div *ngIf="km.errors?.['required']">
+                                    El número de kilometros es necesario
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+            
+       
+            <br>
+
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-11" >
+
+                    </div>
+
+                    <div class="col-1" >
+                        <div class="form">
+                            <div class="">
+                                <button class="btn btn-primary" role="button" (click)= 'create()' *ngIf="!servicio.id else elseBlock" [disabled]="!clienteForm.form.valid"  >Crear</button>
+                                <ng-template #elseBlock>
+                                    <button class="btn btn-primary" role="button" (click)= 'update()' [disabled]="!clienteForm.form.valid">Editar</button>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </form>
+    </div>
+</div>

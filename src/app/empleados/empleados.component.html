@@ -1,0 +1,51 @@
+<div class="card m-5 shadow-lg " >
+    <div class="card-body ">
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h3 class="card-title ms-3">Listado de Empleados</h3>
+        </div>
+        <div class="col-2">
+            <div class="ms-5 text-left">
+                <button class="btn btn-rounded btn-dark text-white" type="button" [routerLink]="['/empleados/form']">
+                    Crear Empleado
+                </button>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div   *ngIf="empleados?.length == 0" class="alert alert-info">
+    No hay ningún Cliente Registrado
+</div>
+
+
+<div class="card m-4 shadow btn text-start "    *ngFor="let empleado of empleados">
+    <div class="row g-0" >
+      <div class="col-md-2 text-bg-secondary">
+       <h4 class="text-center my-5">{{empleado.nombre}}  {{empleado.puesto}}</h4>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{empleado.nombre}}   {{empleado.apellido}}</h5>
+          <p class="card-text">  {{empleado.email}}</p>
+          <p class="card-text">  {{empleado.telefono}}</p>
+          <p class="card-text"><small class="text-body-secondary">  {{empleado.createAt}}</small></p>
+        </div>
+
+        
+      </div>
+
+      <div class="col-md-2 align-self-end mb-2">
+        <button type="button" class="btn btn-primary me-2 " name="button" [routerLink]="['/empleados/form',empleado.id]">Editar</button>
+        <button type="button" class="btn btn-danger" name="button" (click)='deleteEmpl(empleado)'>Eliminar</button>
+
+    </div>
+    </div>
+  </div>
+
+
+
+  
+      </div>
+  </div>

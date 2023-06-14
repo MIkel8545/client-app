@@ -1,0 +1,52 @@
+<div class="card m-5 shadow-lg " >
+    <div class="card-body ">
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h3 class="card-title ms-3">Listado de Servicios</h3>
+        </div>
+        <div class="col-2">
+            <div class="ms-5 text-left">
+                <button class="btn btn-rounded btn-dark text-white" type="button" [routerLink]="['/servicios/form']">
+                    Crear Servicios
+                </button>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div   *ngIf="servicios?.length == 0" class="alert alert-info">
+    No hay ningún Servicio Registrado
+</div>
+
+
+<div class="card m-4 shadow btn text-start "   *ngFor="let servicio of servicios">
+    <div class="row g-0" >
+      <div class="col-md-2 text-bg-secondary">
+       <h4 class="text-center my-5">{{servicio.modelo}}</h4>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title">{{servicio.cliente}}</h4>
+          <h5 class="card-title">{{servicio.modelo}}   {{servicio.marca}}</h5>
+          <p class="card-text">  {{servicio.placas}}</p>
+          <p class="card-text">  {{servicio.serie}}</p>
+          <p class="card-text"><small class="text-body-secondary">  {{servicio.createAt}}</small></p>
+        </div>
+
+        
+      </div>
+
+      <div class="col-md-2 align-self-end mb-2">
+        <button type="button" class="btn btn-primary me-2 " name="button" [routerLink]="['/servicios/form',servicio.id]">Editar</button>
+        <button type="button" class="btn btn-danger" name="button" (click)='delete(servicio)'>Eliminar</button>
+
+    </div>
+    </div>
+  </div>
+
+
+
+  
+      </div>
+  </div>
